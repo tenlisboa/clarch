@@ -1,4 +1,4 @@
-import Template from "../template";
+import Template from "../contracts/template";
 
 const template = `
 const { pathsToModuleNameMapper } = require("ts-jest");

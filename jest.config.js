@@ -14,10 +14,6 @@ module.exports = {
   transformIgnorePatterns: ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
   watchPathIgnorePatterns: ["/node_modules/"],
   roots: ["<rootDir>/"],
-  // moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-  //   prefix: "<rootDir>/src/",
-  // }),
-  collectCoverageFrom: ["src/**/*.ts", "!src/index.ts"],
   coverageThreshold: {
     global: {
       branch: 100,
