@@ -1,6 +1,6 @@
 import { expect, describe, test, jest, beforeEach } from "@jest/globals";
 
-import templates from "../../src/templates";
+import templates from "../../src/templates/setup";
 
 const {
   packageJsonTemplate,
@@ -107,7 +107,7 @@ describe("templates", () => {
       template: licenseTemplateMock,
     };
 
-    const result = licenseTemplate(authorName);
+    const result = licenseTemplate({ authorName });
 
     expect(result).toStrictEqual(expected);
   });
@@ -118,7 +118,7 @@ describe("templates", () => {
       template: packageJsonTemplateMock,
     };
 
-    const result = packageJsonTemplate(projectName);
+    const result = packageJsonTemplate({ projectName });
 
     expect(result).toStrictEqual(expected);
   });

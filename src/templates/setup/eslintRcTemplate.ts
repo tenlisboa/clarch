@@ -26,7 +26,7 @@ const template = `
 }
 `;
 
-export function eslintRcTemplate(): Template {
+export function eslintRcTemplate(input?: any): Template {
   return {
     fileName: ".eslintrc.json",
     template: template,

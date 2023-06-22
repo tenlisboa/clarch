@@ -34,7 +34,7 @@ module.exports = {
 };
 `;
 
-export function jestConfigTemplate(): Template {
+export function jestConfigTemplate(input?: any): Template {
   return {
     fileName: "jest.config.js",
     template: template,

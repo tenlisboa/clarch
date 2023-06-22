@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 
-export function licenseTemplate(authorName: string): Template {
+export function licenseTemplate({ authorName }: any): Template {
   return {
     fileName: "LICENSE",
     template: template

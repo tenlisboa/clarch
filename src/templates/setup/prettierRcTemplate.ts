@@ -8,7 +8,7 @@ const template = `
 }
 `;
 
-export function prettierRcTemplate(): Template {
+export function prettierRcTemplate(input?: any): Template {
   return {
     fileName: ".prettierrc",
     template: template,

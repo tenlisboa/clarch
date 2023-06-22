@@ -19,7 +19,7 @@ const template = `
 }
 `;
 
-export function tsConfigTemplate(): Template {
+export function tsConfigTemplate(input?: any): Template {
   return {
     fileName: "tsconfig.json",
     template: template,

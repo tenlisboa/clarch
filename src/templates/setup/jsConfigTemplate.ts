@@ -16,7 +16,7 @@ const template = `
 }
 `;
 
-export function jsConfigTemplate(): Template {
+export function jsConfigTemplate(input?: any): Template {
   return {
     fileName: "jsconfig.json",
     template: template,

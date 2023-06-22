@@ -6,7 +6,7 @@ coverage
 dist
 `;
 
-export function gitignoreTemplate(): Template {
+export function gitignoreTemplate(input?: any): Template {
   return {
     fileName: ".gitignore",
     template: template,

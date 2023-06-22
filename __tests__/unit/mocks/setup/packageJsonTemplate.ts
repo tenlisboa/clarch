@@ -11,7 +11,7 @@ export default `
     "start": "node --experimental-json-modules src/index.js",
     "build": "node build.js",
     "lint": "eslint --ext .js,.ts src",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'"
   },
   "dependencies": {},
   "peerDependencies": {},

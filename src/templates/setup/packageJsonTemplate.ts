@@ -13,7 +13,7 @@ const template = `
     "start": "node --experimental-json-modules src/index.js",
     "build": "node build.js",
     "lint": "eslint --ext .js,.ts src",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'"
   },
   "dependencies": {},
   "peerDependencies": {},
@@ -36,7 +36,7 @@ const template = `
 }
 `;
 
-export function packageJsonTemplate(projectName: string): Template {
+export function packageJsonTemplate({ projectName }: any): Template {
   return {
     fileName: "package.json",
     template: template.replace(/<PROJECT_NAME>/g, projectName),

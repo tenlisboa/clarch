@@ -24,7 +24,7 @@ build({
 });
 `;
 
-export function buildFileTemplate(): Template {
+export function buildFileTemplate(input?: any): Template {
   return {
     fileName: "build.js",
     template: template,
