@@ -14,6 +14,7 @@ export async function createSetupFilesIfNotExists({
   defaultMainFolder = ".",
 }: Input) {
   const templates = Object.entries(setupTemplates);
+  const pendingFilesToCreate = [];
 
   for (const [_, fileContent] of templates) {
     const { fileName, template } = fileContent({ projectName, authorName });
@@ -23,7 +24,22 @@ export async function createSetupFilesIfNotExists({
     const fileExists = fs.existsSync(filePath);
 
     if (!fileExists) {
-      await fsPromises.writeFile(filePath, template);
+      pendingFilesToCreate.push({ filePath, template });
     }
   }
+
+  await performFileCreation(pendingFilesToCreate);
+}
+
+type FileCreationInput = {
+  filePath: string;
+  template: string;
+}[];
+
+async function performFileCreation(pendingFilesToCreate: FileCreationInput) {
+  const creatingFilesPromises = pendingFilesToCreate.map(
+    ({ filePath, template }) => fsPromises.writeFile(filePath, template)
+  );
+
+  return Promise.all(creatingFilesPromises);
 }
