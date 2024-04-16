@@ -14,7 +14,7 @@ The intention is not being by the book, but organized a project in an understand
 - [ ] Generate `src` folder with an index.ts file
 - [ ] Generate `__tests__` folder with an initial test file.
 - [ ] Being able to choose between typescript and javascript through a parameter.
-- [ ] Publish only the `dist/bin/clarch.js` file.
+- [x] Publish only the `dist/bin/clarch.js` file.
 
 ## Improvements
 

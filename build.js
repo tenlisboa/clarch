@@ -1,15 +1,12 @@
 const { build } = require("esbuild");
 const { dependencies, peerDependencies } = require("./package.json");
 
-const sharedConfig = {
+build({
   entryPoints: ["bin/clarch.ts"],
   bundle: true,
   minify: true,
   external: Object.keys(dependencies).concat(Object.keys(peerDependencies)),
-};
-
-build({
-  ...sharedConfig,
   platform: "node",
+  metafile: true,
   outfile: "dist/bin/clarch.js",
 });
