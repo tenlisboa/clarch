@@ -3,12 +3,12 @@ const { dependencies, peerDependencies } = require("./package.json");
 const { Generator } = require("npm-dts");
 
 new Generator({
-  entry: "src/index.ts",
-  output: "dist/index.d.ts",
+  entry: "bin/clarch.ts",
+  output: "dist/bin/clarch.d.ts",
 }).generate();
 
 const sharedConfig = {
-  entryPoints: ["src/index.ts"],
+  entryPoints: ["bin/clarch.ts"],
   bundle: true,
   minify: true,
   external: Object.keys(dependencies).concat(Object.keys(peerDependencies)),
@@ -17,5 +17,5 @@ const sharedConfig = {
 build({
   ...sharedConfig,
   platform: "node",
-  outfile: "dist/index.js",
+  outfile: "dist/bin/clarch.js",
 });
