@@ -1,11 +1,5 @@
 const { build } = require("esbuild");
 const { dependencies, peerDependencies } = require("./package.json");
-const { Generator } = require("npm-dts");
-
-new Generator({
-  entry: "bin/clarch.ts",
-  output: "dist/bin/clarch.d.ts",
-}).generate();
 
 const sharedConfig = {
   entryPoints: ["bin/clarch.ts"],
