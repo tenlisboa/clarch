@@ -5,7 +5,12 @@ export abstract class Command {
   protected abstract readonly args: string[];
   protected readonly packager: string = "yarn";
 
+  constructor(protected readonly folder: string) {}
+
   public run() {
-    spawnSync(this.packager, [this.name, ...this.args], { stdio: "inherit" });
+    spawnSync(this.packager, [this.name, ...this.args], {
+      stdio: "inherit",
+      cwd: this.folder,
+    });
   }
 }

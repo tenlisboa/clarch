@@ -2,24 +2,32 @@ import { spawnSync } from "child_process";
 import { mkdirSync, existsSync } from "fs";
 import { devDependencies } from "./dependencies";
 import { Command } from "../contracts/command";
+import { isAbsolute } from "path";
 
 export class Init {
-  constructor(
-    private folder: string,
-    private commands: Command[],
-  ) {}
+  private folder: string;
 
-  public async run() {
+  constructor(
+    folder: string,
+    private commands: Command[],
+  ) {
+    this.folder = isAbsolute(folder) ? folder : process.cwd() + "/" + folder;
+  }
+
+  public run() {
     this.createFolderIfNotExists();
 
-    spawnSync("yarn", ["add", "-D", ...devDependencies], {
-      stdio: "inherit",
-      cwd: this.folder,
-    });
+    this.executeCommandsInChain();
+  }
 
-    const commandsPromises = this.commands.map(command => command.run());
+  private executeCommandsInChain() {
+    const first = this.commands.shift();
 
-    await Promise.all(commandsPromises);
+    if (first) first.run();
+
+    if (this.commands.length > 0) {
+      this.executeCommandsInChain();
+    }
   }
 
   private createFolderIfNotExists() {
