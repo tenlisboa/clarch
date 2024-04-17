@@ -1,6 +1,4 @@
-import { spawnSync } from "child_process";
 import { mkdirSync, existsSync } from "fs";
-import { devDependencies } from "./dependencies";
 import { Command } from "../contracts/command";
 import { isAbsolute } from "path";
 
