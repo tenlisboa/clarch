@@ -8,11 +8,9 @@ export class Cmd {
   ) {}
 
   public run() {
-    console.log("running");
     spawnSync(this.cmd, [...this.args], {
       stdio: "inherit",
       cwd: this.workdir,
     });
-    console.log("finished");
   }
 }

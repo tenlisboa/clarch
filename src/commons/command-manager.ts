@@ -10,7 +10,6 @@ export class CommandManager {
   public runInChain() {
     const first = this.commandFlowStore.unqueue();
 
-    console.log(first);
     if (first) first.run();
 
     if (!this.commandFlowStore.ended()) {
