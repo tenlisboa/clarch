@@ -1,14 +1,19 @@
 import { CommandFlowStore } from "./command-flow-builder";
 
 export class CommandManager {
-  constructor(private readonly commandBuilder: CommandFlowStore) {}
+  public workdir: string;
+
+  constructor(private readonly commandFlowStore: CommandFlowStore) {
+    this.workdir = commandFlowStore.workdir;
+  }
 
   public runInChain() {
-    const first = this.commandBuilder.unqueue();
+    const first = this.commandFlowStore.unqueue();
 
+    console.log(first);
     if (first) first.run();
 
-    if (!this.commandBuilder.ended()) {
+    if (!this.commandFlowStore.ended()) {
       this.runInChain();
     }
   }

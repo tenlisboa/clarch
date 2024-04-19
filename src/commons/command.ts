@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 
-export class Command {
+export class Cmd {
   constructor(
     private readonly workdir: string,
     private readonly cmd: string,
@@ -8,9 +8,11 @@ export class Command {
   ) {}
 
   public run() {
+    console.log("running");
     spawnSync(this.cmd, [...this.args], {
       stdio: "inherit",
       cwd: this.workdir,
     });
+    console.log("finished");
   }
 }

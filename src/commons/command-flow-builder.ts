@@ -1,13 +1,15 @@
-import { Command } from "./command";
+import { Cmd } from "./command";
 
 export class CommandFlowStore {
-  private commands: Command[] = [];
+  private commands: Cmd[] = [];
 
-  public add(command: Command) {
+  constructor(public readonly workdir: string) {}
+
+  public add(command: Cmd) {
     this.commands.push(command);
   }
 
-  public unqueue(): Command | null {
+  public unqueue(): Cmd | null {
     const first = this.commands.shift();
 
     return first ?? null;
@@ -17,7 +19,7 @@ export class CommandFlowStore {
     return this.commands.length <= 0;
   }
 
-  public extract(): Command[] {
+  public extract(): Cmd[] {
     return this.commands;
   }
 }
