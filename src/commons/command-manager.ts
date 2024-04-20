@@ -1,18 +1,24 @@
-import { CommandFlowStore } from "./command-flow-builder";
+import { Cmd } from "./command";
+import { PathResolver } from "./path-resolver";
 
 export class CommandManager {
-  public workdir: string;
+  public readonly workdir: string;
+  private commands: Cmd[] = [];
 
-  constructor(private readonly commandFlowStore: CommandFlowStore) {
-    this.workdir = commandFlowStore.workdir;
+  constructor(workdir: string) {
+    this.workdir = PathResolver.resolve(workdir);
+  }
+
+  addCommand(commandName: string, args?: string[]) {
+    this.commands.push(new Cmd(this.workdir, commandName, args ?? []));
   }
 
   public runInChain() {
-    const first = this.commandFlowStore.unqueue();
+    const first = this.commands.shift();
 
     if (first) first.run();
 
-    if (!this.commandFlowStore.ended()) {
+    if (this.commands.length > 0) {
       this.runInChain();
     }
   }
