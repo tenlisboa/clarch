@@ -1,8 +1,8 @@
-import { input } from "@inquirer/prompts";
+import { input, select, confirm } from "@inquirer/prompts";
 import { Command } from "commander";
-import { devDependencies } from "./dependencies";
 import { CommandManager } from "../commons/command-manager";
 import { InitializeProjectUsecase } from "./initialize-project-usercase";
+import { DependencyBuilder } from "../commons/dependency-builder";
 
 export class InitializeProjectStructureCommand extends Command {
   constructor() {
@@ -12,16 +12,43 @@ export class InitializeProjectStructureCommand extends Command {
         message: "What is the project name/directory?",
       });
 
+      const useTypescript = await confirm({
+        message: "Use typescript?",
+      });
+
+      const configureLinter = await confirm({
+        message: "Configure EsLint and Prettier?",
+      });
+
+      const testLibrary = await select({
+        message: "Which test library?",
+        choices: [
+          {
+            value: "jest",
+            name: "Jest",
+          },
+          {
+            value: null,
+            name: "None",
+          },
+        ],
+      });
+
       const commandManager = new CommandManager(workdir);
+      const dependencyBuilder = new DependencyBuilder();
+      const devDependencyBuilder = new DependencyBuilder();
+      const usecase = new InitializeProjectUsecase(
+        commandManager,
+        dependencyBuilder,
+        devDependencyBuilder,
+      );
 
-      commandManager.addCommand("yarn", ["init", "-y"]);
-      commandManager.addCommand("yarn", ["add", "-D", ...devDependencies]);
-      commandManager.addCommand("yarn", ["tsc", "--init"]);
-      commandManager.addCommand("mkdir", ["src"]);
-
-      const usecase = new InitializeProjectUsecase(commandManager);
-
-      usecase.execute();
+      usecase.execute({
+        workdir,
+        useTypescript,
+        configureLinter,
+        testLibrary,
+      });
     });
   }
 }
