@@ -6,6 +6,7 @@ The intention is not being by the book, but organized a project in an understand
 
 ## Todos
 
+- [ ] Support for windows file structure
 - [ ] Generate initial files like package.json and configurations like jest, ts, etc.
   - [x] Package.json
   - [x] tsconfig.json
