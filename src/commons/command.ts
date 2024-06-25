@@ -11,6 +11,8 @@ export class Cmd {
     spawnSync(this.cmd, [...this.args], {
       stdio: "inherit",
       cwd: this.workdir,
+      shell: true,
+      windowsHide: true,
     });
   }
 }

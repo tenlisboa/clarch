@@ -1,6 +1,6 @@
 {
   "name": "clarch",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "index.js",
   "description": "",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "test": "npx jest --config ./jest.config.js",
     "test:dev": "npm run test -- --watchAll --runInBand",
     "test:cov": "npm run test -- --coverage",
-    "start": "node --experimental-json-modules dist/bin/clarch.js",
+    "start": "node --inspect -r ts-node/register bin/clarch.ts",
     "build": "node build.js",
     "lint": "eslint --ext .js,.ts src",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
@@ -38,6 +38,7 @@
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
